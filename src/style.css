@@ -1,0 +1,93 @@
+body{
+
+   --color-principale: #111;
+   --color-secondaire: #0acc74;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: var(--color-principale);
+    color: #fff;
+}
+
+/*Tout ce qui est relatif a la classe menu*/
+   
+.menu {
+    height:1080px;
+    width:15%;
+    background-color:#ccc;
+    font-size:18px;
+    position: sticky;
+    top: 0;
+
+}
+
+.menu a:hover
+{
+    color:var(--color-secondaire);
+    border-color:var(--color-principale) ;
+}
+  
+.menu a{
+    background-color: #eee; 
+    color:var(--color-principale); 
+    display: block; 
+    padding: 20px; 
+    text-decoration: none; 
+    border: solid 0.1em;
+    border-color: white;
+} 
+
+.pdp{
+    height: auto;
+    width: 15%;
+    border-radius: 50%
+    
+}
+
+.active{
+    color: var(--color-secondaire);
+}
+  
+
+/*Tout ce qui est relatif a la classe content*/
+
+.content {
+    text-align: left;
+    margin: -50% auto auto 15%;
+    padding-top: 0;
+    padding-left: 17%;
+    padding-right: 17%;
+    font-size: 125%;
+
+}
+
+.content h1{
+    font-size: 145%; 
+    color:var(--color-secondaire);
+    font-weight: 900;
+}
+
+.content h2{
+    font-size: 110%; 
+}
+
+.content h1::before{
+    content: "C:\\> ";
+}
+
+.content h2::before{
+    content: "C:\\project\\> ";
+}
+
+.content h2::after{
+    content: ".exe";
+}
+
+/*Tout ce qui est relatif a la classe version*/
+
+.version::before {
+    content: none;
+}
+
+
+
+  
