@@ -17,16 +17,34 @@ body{
     font-size:18px;
     position: sticky;
     top: 0;
+    animation: textApparition 1.5s cubic-bezier(0.25, 1, 0.5, 1) 0s 1 normal forwards;
 
 }
 
-.menu a:hover
+@keyframes textApparition {
+    0% {
+      opacity: 0;
+      transform: translateX(-250px);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+.stickyMenu{
+    position:sticky;
+    top: 0;
+}
+
+.stickyMenu a:hover
 {
     color:var(--color-secondaire);
     border-color:var(--color-principale) ;
 }
   
-.menu a{
+.stickyMenu a{
     background-color: #eee; 
     color:var(--color-principale); 
     display: block; 
@@ -43,8 +61,16 @@ body{
     
 }
 
-.active{
-    color: var(--color-secondaire);
+.stickyMenu .active{
+    background-color: var(--color-secondaire);
+    color: white;
+    border-color: var(--color-secondaire);
+}
+
+.stickyMenu .active:hover{
+    color:white;
+    border-color:var(--color-secondaire) ;
+
 }
   
 
@@ -64,6 +90,13 @@ body{
     font-size: 145%; 
     color:var(--color-secondaire);
     font-weight: 900;
+
+    transition: all 0.5s ease-out;
+}
+
+.content h1:hover{
+    color: black;
+    
 }
 
 .content h2{
