@@ -70,7 +70,6 @@ body{
 .stickyMenu .active:hover{
     color:white;
     border-color:var(--color-secondaire) ;
-
 }
   
 
