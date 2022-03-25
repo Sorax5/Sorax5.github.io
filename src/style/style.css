@@ -54,11 +54,12 @@ body{
     border-color: white;
 } 
 
-.pdp{
+.stickyMenu .active .pdp{
     height: auto;
     width: 15%;
-    border-radius: 50%
-    
+    border-radius: 50%;
+    vertical-align: middle;
+    border-color: var(--color-principale);
 }
 
 .stickyMenu .active{
