@@ -1,9 +1,9 @@
 const cacheName = "Physlisium Studio-Portfolio SoraxDubbing-1.0";
 const contentToCache = [
-    "Build/build.loader.js",
-    "Build/build.framework.js",
-    "Build/build.data",
-    "Build/build.wasm",
+    "Build/portfolio.loader.js",
+    "Build/portfolio.framework.js.br",
+    "Build/portfolio.data.br",
+    "Build/portfolio.wasm.br",
     "TemplateData/style.css"
 
 ];
