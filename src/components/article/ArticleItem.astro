@@ -1,4 +1,6 @@
 ---
+import Image from "astro/components/Image.astro";
+
 const { title, description, date, author, image, url } = Astro.props;
 
 // normalize image prop (frontmatter image can be string or object)
@@ -15,7 +17,7 @@ const formattedDate = date
 
 <li>
         <a class="blog-card blog-card--horizontal" href={url}>
-            {imageUrl ? <img class="cover cover-left" src={imageUrl} alt={imageAlt} /> : null}
+            {imageUrl ? <Image class="cover cover-left" src={imageUrl} alt={imageAlt} /> : null}
         <div class="card-body">
             <h3>{title}</h3>
             <div class="meta">{formattedDate} · {author}</div>
