@@ -1,12 +1,15 @@
 ---
-const { title, url, description } = Astro.props;
+import { Article } from "../../models/Article";
+
+const raw = Astro.props as any;
+const article = new Article(raw);
 ---
 <div class="card w-96 bg-base-100 card-xs shadow-sm">
     <div class="card-body">
-        <h2 class="card-title">{title}</h2>
-        <p>{description}</p>
+    <h2 class="card-title">{article.title}</h2>
+    <p>{article.description}</p>
         <div class="justify-end card-actions">
-            <a href={url} class="btn btn-secondary">Read More</a>
+            <a href={article.url} class="btn btn-secondary">Read More</a>
         </div>
     </div>
 </div>

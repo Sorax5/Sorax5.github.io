@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectList from '../components/project/ProjectList.astro';
+
+const pageTitle = 'Projets';
+const allProjects = Object.values(import.meta.glob('./projects/*.md', { eager: true }));
+---
+
+<BaseLayout pageTitle={pageTitle}>
+    <section>
+        <h1>Projets</h1>
+        <p>Voici une sélection de projets et les compétences utilisées pour chacun :</p>
+        <ProjectList allProjects={allProjects} />
+    </section>
+</BaseLayout>
+
+<style>
+    section { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
+    h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+</style>

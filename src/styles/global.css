@@ -61,6 +61,22 @@ body {
   -webkit-mask-image: url("/icons/linkedin.svg");
   mask-image: url("/icons/linkedin.svg");
 }
+.icon-gradient.icon-unity {
+  -webkit-mask-image: url("/icons/unity.svg");
+  mask-image: url("/icons/unity.svg");
+}
+.icon-gradient.icon-csharp {
+  -webkit-mask-image: url("/icons/csharp.svg");
+  mask-image: url("/icons/csharp.svg");
+}
+.icon-gradient.icon-git {
+  -webkit-mask-image: url("/icons/git.svg");
+  mask-image: url("/icons/git.svg");
+}
+.icon-gradient.icon-aseprite {
+  -webkit-mask-image: url("/icons/aseprite.svg");
+  mask-image: url("/icons/aseprite.svg");
+}
 
 .icon-link {
   display: inline-flex;

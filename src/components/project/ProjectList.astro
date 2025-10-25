@@ -1,0 +1,25 @@
+---
+import ProjectItem from './ProjectItem.astro';
+
+const { allProjects } = Astro.props;
+---
+
+<ul class="projects-grid">
+    {allProjects.map((p: any) => (
+        <ProjectItem {...p.frontmatter} url={p.url} />
+    ))}
+</ul>
+
+<style>
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1rem;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    /* ensure items inside the grid stretch */
+    .projects-grid > * { display: block; }
+</style>

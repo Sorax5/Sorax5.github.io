@@ -8,14 +8,7 @@ const { allPosts } = Astro.props;
 
 <ul>
     {allPosts.map((post: any) => (
-        <ArticleItem
-            image={post.frontmatter.image}
-            title={post.frontmatter.title}
-            author={post.frontmatter.author}
-            description={post.frontmatter.description}
-            date={post.frontmatter.pubDate}
-            url={post.url}
-        />
+        <ArticleItem {...post.frontmatter} url={post.url} />
     ))}
 
 </ul>

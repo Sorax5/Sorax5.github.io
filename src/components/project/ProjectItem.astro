@@ -1,0 +1,61 @@
+---
+import Image from "astro/components/Image.astro";
+import { Project } from "../../models/Project";
+
+const raw = Astro.props as any;
+const project = new Project(raw);
+---
+
+<li class="project-card">
+    <a class="project-card__link" href={project.title ? raw.url ?? '#' : '#'}>
+        {project.imageUrl ? (
+            project.imageUrl.startsWith('/') ? (
+                <img class="project-cover" src={project.imageUrl} alt={project.imageAlt} />
+            ) : (
+                <Image class="project-cover" src={project.imageUrl} alt={project.imageAlt} inferSize={true} />
+            )
+        ) : null}
+        <div class="project-body">
+            <h3 class="project-title">{project.title}</h3>
+            <div class="project-meta">{project.formattedDate}</div>
+            {project.description ? <p class="project-desc">{project.description}</p> : null}
+
+            {project.skills.length ? (
+                <div class="project-skills" aria-hidden="true">
+                    {project.skills.map((skill: string) => (
+                        <img class="skill-icon" src={`/icons/${skill}.svg`} alt={skill} title={skill} width={20} height={20} />
+                    ))}
+                </div>
+            ) : null}
+        </div>
+    </a>
+</li>
+
+<style>
+    .project-card {
+        list-style: none;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(16,24,40,0.06);
+        overflow: hidden;
+        transition: transform .15s ease, box-shadow .15s ease;
+    }
+
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(16,24,40,0.12); }
+
+    .project-card__link { display: flex; gap: 1rem; text-decoration: none; color: inherit; padding: 0.75rem; align-items: flex-start; }
+
+    .project-cover { width: 120px; height: 80px; object-fit: cover; border-radius: 6px; flex: 0 0 120px; }
+
+    .project-body { flex: 1 1 auto; }
+
+    .project-title { margin: 0 0 0.25rem 0; font-size: 1.1rem; }
+
+    .project-meta { color: var(--text-secondary-color); font-size: 0.9rem; margin-bottom: 0.5rem; }
+
+    .project-desc { margin: 0 0 0.5rem 0; color: var(--text-color); }
+
+    .project-skills { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+
+    .skill-icon { width: 20px; height: 20px; display: inline-block; }
+</style>

@@ -1,21 +1,22 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "./BaseLayout.astro";
-import { Article } from "../models/Article";
+import { Project } from "../models/Project";
 
 const raw = (Astro.props as any).frontmatter ?? Astro.props;
-const article = new Article(raw);
+const project = new Project(raw);
 
-const formattedDate = article.formattedDate;
-const cover = article.imageUrl;
-const coverAlt = article.imageAlt;
-
-/** @type {string[]} */
-const tags = article.tags ?? [];
+const formattedDate = project.formattedDate;
+const cover = project.imageUrl;
+const coverAlt = project.imageAlt;
+const contributors = project.contributors;
+const skills = project.skills;
+const links = project.links;
 ---
 
 
-<BaseLayout pageTitle={article.title}>
-    <article class="post-card">Z
+<BaseLayout pageTitle={project.title}>
+    <article class="post-card">
         {cover ? (
             <figure class="post-cover">
                 <img src={cover} alt={coverAlt} />
@@ -23,16 +24,38 @@ const tags = article.tags ?? [];
         ) : null}
 
         <header class="post-hero">
-            <h1>{article.title}</h1>
+            <h1>{project.title}</h1>
             <div class="meta">
-                <span class="meta-author">Par {article.author}</span>
+                <span class="meta-author">Par {contributors.join(', ')}</span>
                 <span class="meta-sep">·</span>
                 <time class="meta-date">{formattedDate}</time>
             </div>
-            {article.description ? <p class="excerpt">{article.description}</p> : null}
+            {project.description ? <p class="excerpt">{project.description}</p> : null}
 
-            {tags.length ? (
-                <div class="tags" aria-hidden="true">{tags.join(' · ')}</div>
+            {skills.length ? (
+                <h2>Compétences :</h2>
+                <div class="skills" aria-hidden="true">
+                    {
+                        skills.map((skill: string | null | undefined) => {
+                            return <Image class="skill" inferSize={true} src={`/icons/${skill}.svg`} alt={skill || ''} width={24} height={24} title={skill || ''} />;
+                        })
+                    }
+                </div>
+            ) : null}
+
+            {links.length ? (
+                <h2>Liens :</h2>
+                <div class="links" aria-hidden="true">
+                    {
+                        links.map((link: { url?: string | URL | null | undefined; label?: string | null | undefined }) => {
+                            const label = String(link.label ?? 'lien');
+                            return <div class="link">
+                                <Image src={`/icons/${label.toLowerCase()}.svg`} inferSize={true} alt={label} width={24} height={24} title={label} />
+                                <a href={link.url} target="_blank" rel="noopener noreferrer">{link.url}</a>
+                            </div>;
+                        })
+                    }
+                </div>
             ) : null}
         </header>
 
@@ -115,9 +138,27 @@ const tags = article.tags ?? [];
         color: var(--text-secondary-color);
     }
 
-    .tags {
-        margin-top: 0.75rem;
+    .skills {
+        display: flex;
         color: var(--primary-color);
-        font-weight: 600;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .skills {
+        margin-top: 1rem;
+    }
+
+    .links {
+        display: flex;
+        margin-top: 1rem;
+        gap: 1rem;
+    }
+
+    .link {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        color: var(--text-color);
     }
 </style>

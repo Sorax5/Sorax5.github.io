@@ -1,27 +1,19 @@
 ---
 import Image from "astro/components/Image.astro";
+import { Article } from "../../models/Article";
 
-const { title, description, date, author, image, url } = Astro.props;
-
-// normalize image prop (frontmatter image can be string or object)
-const imageUrl = image && (image.url || image);
-const imageAlt = image && (image.alt || title || '');
-const formattedDate = date
-    ? new Date(date).toLocaleDateString('fr-FR', {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-        })
-    : '';
+// Astro passes raw props (frontmatter) — wrap them in our Article helper
+const raw = Astro.props as any;
+const article = new Article(raw);
 ---
 
 <li>
-        <a class="blog-card blog-card--horizontal" href={url}>
-            {imageUrl ? <Image inferSize={true} class="cover cover-left" src={imageUrl} alt={imageAlt} /> : null}
+        <a class="blog-card blog-card--horizontal" href={article.url}>
+            {article.imageUrl ? <Image inferSize={true} class="cover cover-left" src={article.imageUrl} alt={article.imageAlt} /> : null}
         <div class="card-body">
-            <h3>{title}</h3>
-            <div class="meta">{formattedDate} · {author}</div>
-            {description ? <div class="excerpt">{description}</div> : null}
+            <h3>{article.title}</h3>
+            <div class="meta">{article.formattedDate} · {article.author}</div>
+            {article.description ? <div class="excerpt">{article.description}</div> : null}
             <span class="read-more">Lire l'article</span>
         </div>
     </a>
