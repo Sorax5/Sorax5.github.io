@@ -2,13 +2,22 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Presentation from "../components/Presentation.astro";
 import Divider from "../components/Divider.astro";
-import Contact from "../components/Contact.astro";
 const pageTitle = "Home Page";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
+	<article>
 	<Presentation/>
 	<Divider/>
-	<Divider/>
-	<Contact />
+	</article>
+	
 </BaseLayout>
+
+<style>
+	article {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin: 2rem 0;
+	}
+</style>

@@ -3,11 +3,90 @@
   --secondary-color: #2ecc71;
   --background-color: #f5f5f5;
   --text-color: #333333;
+  --border-color: #e0e0e0;
 }
 
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap");
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    "Roboto Mono", monospace;
+  font-variant-ligatures: contextual;
+  font-feature-settings: "calt" 1, "liga" 1;
   margin: 0;
   padding: 0;
   background-color: var(--background-color);
+}
+
+.name-gradient {
+  background: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+.icon-gradient {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+
+  /* default: single color (uses text color variable) */
+  background: var(--text-color);
+  background-size: 200% 200%;
+  background-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  transition: background 220ms ease, transform 160ms ease;
+}
+
+.icon-gradient.icon-github {
+  -webkit-mask-image: url("/icons/github.svg");
+  mask-image: url("/icons/github.svg");
+}
+.icon-gradient.icon-itch {
+  -webkit-mask-image: url("/icons/itch.svg");
+  mask-image: url("/icons/itch.svg");
+}
+.icon-gradient.icon-linkedin {
+  -webkit-mask-image: url("/icons/linkedin.svg");
+  mask-image: url("/icons/linkedin.svg");
+}
+
+.icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-link:hover .icon-gradient,
+.icon-link:focus-within .icon-gradient,
+.icon-gradient:focus {
+  background: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  background-size: 200% 200%;
+  background-position: center;
+}
+
+.icon-link:hover {
+  transform: scale(1.06);
+}
+
+.icon-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 150px;
+  margin: 1.5rem auto 0 auto;
 }
