@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap");
+
 :root {
   --primary-color: #3498db;
   --secondary-color: #2ecc71;
@@ -6,8 +8,6 @@
   --text-color: #333333;
   --border-color: #e0e0e0;
 }
-
-@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap");
 
 body {
   font-family: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco,
