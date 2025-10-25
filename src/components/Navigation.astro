@@ -14,16 +14,17 @@
 <style>
     a {
         text-decoration: none;
-        color: #333;
+        color: var(--text-color);
         font-size: 1rem;
     }
 
     a:hover {
-        text-decoration: underline;
+        color: var(--primary-color);
     }
-    
-    a + a {
-        margin-left: 1rem;
+
+    a:focus {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
     }
 </style>
 
