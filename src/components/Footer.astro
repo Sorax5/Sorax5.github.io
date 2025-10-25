@@ -2,12 +2,12 @@
 import Navigation from "./Navigation.astro";
 ---
 
-<footer class="footer footer-horizontal footer-center bg-base-200 text-base-content rounded p-10">
-    <nav class="grid grid-flow-col gap-4">
+<footer>
+    <nav>
         <Navigation/>
     </nav>
     <nav>
-        <div class="grid grid-flow-col gap-4">
+        <div>
             <a>
                 <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -44,3 +44,32 @@ import Navigation from "./Navigation.astro";
         </div>
     </nav>
 </footer>
+
+<style> 
+    footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        border-top: 1px solid var(--border-color);
+        margin-top: 2rem;
+    }
+
+    footer nav {
+        margin: 0.5rem 0;
+    }
+
+    footer div {
+        display: flex;
+        gap: 1rem;
+    }
+
+    footer a {
+        text-decoration: none;
+        color: var(--text-color);
+    }
+
+    footer a:hover {
+        color: var(--primary-color);
+    }
+</style>
