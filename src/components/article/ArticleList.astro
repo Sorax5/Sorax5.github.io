@@ -1,14 +1,14 @@
 ---
 
-import BlogItem from "./BlogItem.astro";
+import ArticleItem from "./ArticleItem.astro";
 const { allPosts } = Astro.props;
 
 ---
 
 
-<ul class="list bg-base-100 rounded-box shadow-md">
+<ul>
     {allPosts.map((post: any) => (
-        <BlogItem
+        <ArticleItem
             image={post.frontmatter.image}
             title={post.frontmatter.title}
             author={post.frontmatter.author}
@@ -19,3 +19,15 @@ const { allPosts } = Astro.props;
     ))}
 
 </ul>
+
+<style>
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+</style>

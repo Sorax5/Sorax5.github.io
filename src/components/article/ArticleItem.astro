@@ -1,0 +1,26 @@
+---
+const { title, description, date, author, image, url } = Astro.props;
+
+// normalize image prop (frontmatter image can be string or object)
+const imageUrl = image && (image.url || image);
+const imageAlt = image && (image.alt || title || '');
+const formattedDate = date
+    ? new Date(date).toLocaleDateString('fr-FR', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+        })
+    : '';
+---
+
+<li>
+        <a class="blog-card blog-card--horizontal" href={url}>
+            {imageUrl ? <img class="cover cover-left" src={imageUrl} alt={imageAlt} /> : null}
+        <div class="card-body">
+            <h3>{title}</h3>
+            <div class="meta">{formattedDate} · {author}</div>
+            {description ? <div class="excerpt">{description}</div> : null}
+            <span class="read-more">Lire l'article</span>
+        </div>
+    </a>
+</li>

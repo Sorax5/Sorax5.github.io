@@ -1,28 +1,17 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
-title: 'My First Blog Post'
-pubDate: 2022-07-01
-description: 'This is the first post of my new Astro blog.'
-author: 'Astro Learner'
+title: "Mon premier article de blog avec Astro"
+pubDate: 2025-10-25
+description: "Ceci est mon premier article de blog écrit avec Astro !"
+author: "Matteo Rauch"
 image:
-    url: 'https://docs.astro.build/assets/rose.webp'
-    alt: 'The Astro logo on a dark background with a pink glow.'
+  url: "https://i.imgur.com/J2fFNGb.png"
+  alt: "Une belle rose"
 tags: ["astro", "blogging", "learning in public"]
 ---
-# My First Blog Post
 
-Published on: 2022-07-01
+Bienvenue sur mon tout premier article de blog créé avec Astro ! Je suis ravi de partager cette expérience avec vous. Restez à l'écoute pour plus de contenu passionnant à venir.
 
-Welcome to my _new blog_ about learning Astro! Here, I will share my learning journey as I build a new website.
+Voici une autre section de mon article où je peux approfondir certains sujets intéressants liés à Astro et au développement web. N'hésitez pas à laisser vos commentaires et à partager vos pensées !
 
-## What I've accomplished
-
-1. **Installing Astro**: First, I created a new Astro project and set up my online accounts.
-
-2. **Making Pages**: I then learned how to make pages by creating new `.astro` files and placing them in the `src/pages/` folder.
-
-3. **Making Blog Posts**: This is my first blog post! I now have Astro pages and Markdown posts!
-
-## What's next
-
-I will finish the Astro tutorial, and then keep adding more posts. Watch this space for more to come.
+Merci de m'avoir lu jusqu'ici. J'espère que vous avez apprécié ce premier aperçu de mon blog Astro. À bientôt pour de nouvelles aventures de codage !
