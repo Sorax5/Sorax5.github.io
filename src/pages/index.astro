@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Presentation from "../components/Presentation.astro";
+import Divider from "../components/Divider.astro";
+import Contact from "../components/Contact.astro";
+const pageTitle = "Home Page";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+	<Presentation/>
+	<Divider/>
+	<Divider/>
+	<Contact />
+</BaseLayout>

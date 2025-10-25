@@ -1,0 +1,17 @@
+---
+const { title, description, date, author, image, url } = Astro.props;
+---
+
+<li class="list-row">
+    <div><img class="size-10 rounded-box" src={image} alt="blog_image"/></div>
+    <div>
+        <div>{title}</div>
+        <div class="text-xs opacity-60">{date} - {author}</div>
+        <div class="text-xs uppercase font-semibold opacity-60">{description}</div>
+    </div>
+
+    <a href={url}
+            class="btn btn-square btn-ghost text-primary">
+        Lire l'article
+    </a>
+</li>

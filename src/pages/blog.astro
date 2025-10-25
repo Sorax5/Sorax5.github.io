@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BlogPost from "../components/blog/BlogPost.astro";
+import BlogList from "../components/blog/BlogList.astro";
+const pageTitle = "Blog";
+
+const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
+---
+<BaseLayout pageTitle={pageTitle}>
+    <div class="container mx-auto px-4 py-8 justify-center flex flex-col items-center">
+        <h1 class="text-3xl font-bold mb-6">Blog</h1>
+        <p class="mb-4">Bienvenue sur mon blog ! Voici les derniers articles :</p>
+        <BlogList allPosts={allPosts} />
+    </div>
+</BaseLayout>
+

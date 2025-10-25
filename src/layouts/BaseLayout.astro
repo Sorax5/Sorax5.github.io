@@ -1,0 +1,35 @@
+---
+// layout/BaseLayout.astro
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { ClientRouter } from "astro:transitions";
+
+import '../styles/global.css';
+
+const { pageTitle = "Mon site Astro" } = Astro.props;
+---
+
+<html lang="fr" class="h-full scroll-smooth antialiased">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="Description de la page ici." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{pageTitle}</title>
+    <ClientRouter />
+</head>
+
+<body>
+<Header />
+
+<main>
+    <article>
+        <slot />
+    </article>
+
+</main>
+
+<Footer />
+</body>
+</html>

@@ -1,0 +1,21 @@
+---
+
+import BlogItem from "./BlogItem.astro";
+const { allPosts } = Astro.props;
+
+---
+
+
+<ul class="list bg-base-100 rounded-box shadow-md">
+    {allPosts.map((post: any) => (
+        <BlogItem
+            image={post.frontmatter.image}
+            title={post.frontmatter.title}
+            author={post.frontmatter.author}
+            description={post.frontmatter.description}
+            date={post.frontmatter.pubDate}
+            url={post.url}
+        />
+    ))}
+
+</ul>
