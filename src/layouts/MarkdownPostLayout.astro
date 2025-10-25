@@ -39,6 +39,10 @@ const tags = article.tags ?? [];
         <section class="post-content">
             <slot />
         </section>
+
+        <footer class="post-footer">
+            <a href="/articles/">Retour à la liste des articles</a>
+        </footer>
     </article>
 </BaseLayout>
 
@@ -119,5 +123,12 @@ const tags = article.tags ?? [];
         margin-top: 0.75rem;
         color: var(--primary-color);
         font-weight: 600;
+    }
+
+    .post-footer {
+        padding: 1.5rem;
+        border-top: 1px solid var(--border-color);
+        text-align: center;
+        background: var(--background-light);
     }
 </style>

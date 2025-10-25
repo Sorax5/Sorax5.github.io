@@ -19,6 +19,18 @@ body {
   background-color: var(--background-color);
 }
 
+/* Layout: make the site take full viewport height and push footer to bottom */
+.site {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Let main grow to fill available space so footer stays at bottom */
+main {
+  flex: 1 0 auto;
+}
+
 .name-gradient {
   background: linear-gradient(
     90deg,

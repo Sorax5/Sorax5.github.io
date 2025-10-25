@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+// Contact form component removed — this page uses direct links for contact.
+
+const pageTitle = 'Contact';
+---
+
+<BaseLayout pageTitle={pageTitle}>
+    <main class="contact-page">
+        <header>
+            <h1>Contact</h1>
+            <p class="lead">Tu peux me joindre de plusieurs façons — choisis celle que tu préfères. Je réponds généralement sous quelques jours.</p>
+        </header>
+
+        <section class="contact-grid">
+            <div class="contact-card contact-info">
+                <h2>Informations</h2>
+                <p>
+                    Email pour contact professionnel :
+                    <a href="mailto:matteo.rauch23@gmail.com" class="muted-link">matteo.rauch23@gmail.com</a>
+                </p>
+
+                <p class="privacy-note">Veuillez noter que ce mail est destiné aux communications professionnelles uniquement. Pour toute autre demande, merci d'utiliser les liens sociaux ci-contre.</p>
+            </div>
+
+            <div class="contact-card contact-links">
+                <h2>Liens</h2>
+                <p>Vous pouvez aussi me trouver sur :</p>
+                <ul class="socials">
+                    <li><span class="icon-gradient icon-github" aria-hidden="true"></span> <a href="https://github.com/Sorax5" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                    <li><span class="icon-gradient icon-linkedin" aria-hidden="true"></span> <a href="https://www.linkedin.com/in/matteo-rauch" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                </ul>
+                <p class="hint">Si vous préférez envoyer un message direct, utilisez les réseaux sociaux ci-dessus.</p>
+            </div>
+        </section>
+    </main>
+</BaseLayout>
+
+<style>
+    .contact-page { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
+    header h1 { margin: 0 0 0.25rem 0; }
+    .lead { color: var(--text-secondary-color); margin: 0 0 1.25rem 0; }
+
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: start; }
+
+    .contact-card { background: white; padding: 1rem; border-radius: 10px; box-shadow: 0 6px 20px rgba(16,24,40,0.06); }
+
+    /* Remove bullets for socials in both info and links cards */
+    .contact-info .socials,
+    .contact-links .socials { 
+        list-style: none; 
+        padding: 0; 
+        margin: 0.5rem 0; 
+    }
+
+    .contact-info .socials li,
+    .contact-links .socials li { margin: 0.25rem 0; }
+
+    /* Align icon and link horizontally */
+    .contact-info .socials li,
+    .contact-links .socials li {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .contact-info .socials li .icon-gradient,
+    .contact-links .socials li .icon-gradient {
+        width: 20px;
+        height: 20px;
+        flex: 0 0 20px;
+    }
+
+    .muted-link { color: var(--primary-color); font-weight: 600; }
+
+    .privacy-note { font-size: 0.9rem; color: var(--text-secondary-color); margin-top: 1rem; }
+
+    .hint { margin-top: 0.75rem; color: var(--text-secondary-color); font-size: 0.9rem; }
+
+    @media (max-width: 800px) {
+        .contact-grid { grid-template-columns: 1fr; }
+    }
+</style>
