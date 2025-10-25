@@ -17,7 +17,7 @@ const formattedDate = date
 
 <li>
         <a class="blog-card blog-card--horizontal" href={url}>
-            {imageUrl ? <Image class="cover cover-left" src={imageUrl} alt={imageAlt} /> : null}
+            {imageUrl ? <Image inferSize={true} class="cover cover-left" src={imageUrl} alt={imageAlt} /> : null}
         <div class="card-body">
             <h3>{title}</h3>
             <div class="meta">{formattedDate} · {author}</div>
