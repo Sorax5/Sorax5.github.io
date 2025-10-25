@@ -2,7 +2,7 @@
 import Links from './Links.astro';
 ---
 
-<section>
+<section class="container">
     <div>
         <div>
             <h1>Bienvenue, je suis <span class="name-gradient">Matteo Rauch</span>!</h1>
@@ -24,6 +24,10 @@ import Links from './Links.astro';
         display: flex;
         justify-content: center;
         align-items: center;
+
+        height: 70vh;
+        max-height: 600px;
+        overflow: hidden;
     }
 
     h1 {
