@@ -6,20 +6,9 @@ const { allPosts } = Astro.props;
 ---
 
 
-<ul>
+<ul class="article-grid">
     {allPosts.map((post: any) => (
         <ArticleItem {...post.frontmatter} url={post.url} />
     ))}
 
 </ul>
-
-<style>
-    ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-    }
-</style>

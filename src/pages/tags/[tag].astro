@@ -1,28 +1,32 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ArticlePost from "../../components/article/ArticlePost.astro";
+import ArticleList from "../../components/article/ArticleList.astro";
 
 export async function getStaticPaths() {
-    const allPosts = Object.values(import.meta.glob('../posts/*.md', { eager: true }));
+    // Collect all articles and extract unique tags to generate a page for each tag
+    const allPosts = Object.values(import.meta.glob('../articles/*.md', { eager: true }));
+    const tags = new Set<string>();
+    allPosts.forEach((post: any) => {
+        (post.frontmatter.tags || []).forEach((t: string) => tags.add(t));
+    });
 
-    return [
-        {params: {tag: "astro"}, props: {posts: allPosts}},
-        {params: {tag: "réussites"}, props: {posts: allPosts}},
-        {params: {tag: "communauté"}, props: {posts: allPosts}},
-        {params: {tag: "blogging"}, props: {posts: allPosts}},
-        {params: {tag: "obstacles"}, props: {posts: allPosts}},
-        {params: {tag: "apprentissage en public"}, props: {posts: allPosts}}
-    ];
+    return Array.from(tags).map((tag) => ({ params: { tag } }));
 }
 
 const { tag } = Astro.params;
-const { posts } = Astro.props;
-const filteredPosts = posts.filter((post: any) => post.frontmatter.tags?.includes(tag));
+const allPosts = Object.values(import.meta.glob('../articles/*.md', { eager: true }));
+const filteredPosts = allPosts.filter((post: any) => post.frontmatter.tags?.includes(tag));
 ---
 
-<BaseLayout pageTitle={tag}>
-    <p>Articles étiquetés avec {tag}</p>
-    <ul>
-        {filteredPosts.map((post: any) => <ArticlePost url={post.url} title={post.frontmatter.title}/>)}
-    </ul>
+<BaseLayout pageTitle={`Tag: ${tag}`}>
+    <section class="page-section">
+        <h1>Tag : {tag}</h1>
+        <p>Articles étiquetés avec « {tag} »</p>
+
+        {filteredPosts.length > 0 ? (
+            <ArticleList allPosts={filteredPosts} />
+        ) : (
+            <p>Aucun article trouvé pour ce tag.</p>
+        )}
+    </section>
 </BaseLayout>

@@ -10,16 +10,4 @@ const { allProjects } = Astro.props;
     ))}
 </ul>
 
-<style>
-    .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 1rem;
-        padding: 0;
-        margin: 0;
-        list-style: none;
-    }
 
-    /* ensure items inside the grid stretch */
-    .projects-grid > * { display: block; }
-</style>
