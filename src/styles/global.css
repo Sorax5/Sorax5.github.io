@@ -19,16 +19,14 @@ body {
   background-color: var(--background-color);
 }
 
-/* Layout: make the site take full viewport height and push footer to bottom */
+main {
+  flex: 1 0 auto;
+}
+
 .site {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
-
-/* Let main grow to fill available space so footer stays at bottom */
-main {
-  flex: 1 0 auto;
 }
 
 .name-gradient {
@@ -48,7 +46,6 @@ main {
   height: 24px;
   display: inline-block;
 
-  /* default: single color (uses text color variable) */
   background: var(--text-color);
   background-size: 200% 200%;
   background-position: center;
@@ -61,6 +58,7 @@ main {
   transition: background 220ms ease, transform 160ms ease;
 }
 
+/* Icon masks for various platforms/tools */
 .icon-gradient.icon-github {
   -webkit-mask-image: url("/icons/github.svg");
   mask-image: url("/icons/github.svg");
@@ -118,6 +116,29 @@ main {
   align-items: center;
   max-width: 150px;
   margin: 1.5rem auto 0 auto;
+}
+
+/* Button styles */
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  background: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 220ms ease, transform 160ms ease;
+}
+
+.btn:hover,
+.btn:focus {
+  background: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+.btn:focus {
+  outline: 2px solid var(--secondary-color);
+  outline-offset: 2px;
 }
 
 /* Blog card styles (list view) */

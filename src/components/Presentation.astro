@@ -13,6 +13,10 @@ import Links from './Links.astro';
         <div class="icon-container">
             <Links />
         </div>
+        <call>
+            <a class="btn" href="/projects/">Voir mes projets</a>
+            <a class="btn btn-secondary" href="/articles/">Lire mes articles</a>
+        </call>
     </div>
 </section>
 
@@ -45,6 +49,14 @@ import Links from './Links.astro';
     img {
         max-width: 100%;
         border-radius: 8px;
+    }
+
+    call {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        align-items: center;
+        justify-content: center;
     }
 
 </style>

@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ArticleList from "../components/article/ArticleList.astro";
 const pageTitle = "Blog";
 
-const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
+const allPosts = Object.values(import.meta.glob('./articles/*.md', { eager: true }));
 ---
 <BaseLayout pageTitle={pageTitle}>
     <article>
