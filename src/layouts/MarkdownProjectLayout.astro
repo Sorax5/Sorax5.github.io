@@ -2,7 +2,6 @@
 import { Image } from "astro:assets";
 import BaseLayout from "./BaseLayout.astro";
 import { Project } from "../models/Project";
-import { Icon } from 'astro-icon/components'
 
 const raw = (Astro.props as any).frontmatter ?? Astro.props;
 const project = new Project(raw);
@@ -28,7 +27,6 @@ const links = project.links;
             <h1>{project.title}</h1>
             <div class="meta">
                 <span class="meta-author">Par {contributors.join(', ')}</span>
-                <span class="meta-sep">·</span>
                 <time class="meta-date">{formattedDate}</time>
             </div>
             {project.description ? <p class="excerpt">{project.description}</p> : null}
@@ -71,3 +69,42 @@ const links = project.links;
         </footer>
     </article>
 </BaseLayout>
+
+<style>
+    .skills {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+    }
+
+    .skill {
+        display: block;
+    }
+
+    .links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .link a {
+        word-break: break-all;
+    }
+
+    .link img {
+        flex-shrink: 0;
+    }
+
+    .meta-date {
+        font-size: 0.9rem;
+        margin-left: 1rem;
+    }
+</style>

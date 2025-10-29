@@ -9,6 +9,15 @@
   --border-color: #e0e0e0;
 }
 
+/* Make sizing predictable so padding doesn't increase element width
+   and inner sections (.post-hero, .post-content) can safely use 100% width
+   without bypassing container padding. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   font-family: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco,
     "Roboto Mono", monospace;
@@ -21,6 +30,14 @@ body {
 
 main {
   flex: 1 0 auto;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
 }
 
 .site {
@@ -141,89 +158,9 @@ main {
   outline-offset: 2px;
 }
 
-/* Blog card styles (list view) */
-.blog-card {
-  display: block;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
-  overflow: hidden;
-  text-decoration: none;
-  color: inherit;
-  transition: transform 180ms ease, box-shadow 180ms ease;
-}
-.blog-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(16, 24, 40, 0.09);
-}
-.blog-card .cover {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  display: block;
-}
-.blog-card .card-body {
-  padding: 1rem;
-}
-.blog-card h3 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.1rem;
-}
-.blog-card .meta {
-  color: var(--text-secondary-color);
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
-}
-.blog-card .excerpt {
-  color: var(--text-secondary-color);
-  font-size: 0.95rem;
-  margin-bottom: 0.75rem;
-}
-.blog-card .read-more {
-  display: inline-block;
-  padding: 0.4rem 0.7rem;
-  border-radius: 6px;
-  background: rgba(52, 152, 219, 0.08);
-  color: var(--primary-color);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-/* horizontal variant for list items: small image on left, content on right */
-.blog-card--horizontal {
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-}
-.blog-card--horizontal .cover-left {
-  width: 120px;
-  height: 120px;
-  flex-shrink: 0;
-  border-radius: 8px;
-  object-fit: cover;
-  margin-right: 1.5rem; /* increased spacing between thumbnail and content */
-}
-.blog-card--horizontal .card-body {
-  padding: 0.75rem 1rem 1rem 0;
-}
-
-@media (max-width: 640px) {
-  .blog-card--horizontal {
-    flex-direction: column;
-  }
-  .blog-card--horizontal .cover-left {
-    width: 100%;
-    height: 160px;
-    margin-right: 0;
-    margin-bottom: 1.25rem; /* increased spacing when stacked vertically */
-  }
-}
-
 /* Common page container used by list pages (Blog, Projects, Tags, etc.) */
 .page-section {
-  max-width: 1100px;
-  margin: 2rem auto;
-  padding: 0 1rem;
+  margin: 1rem auto;
 }
 .page-section h1 {
   font-size: 2rem;
@@ -256,7 +193,7 @@ article {
 /* Grid for listing projects */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
   gap: 1rem;
   padding: 0;
   margin: 0;
@@ -277,13 +214,14 @@ article {
   overflow: hidden;
 }
 .post-hero {
-  padding: 2.25rem 1.25rem;
+  padding: 1.25rem 1.25rem;
   border-bottom: 1px solid var(--border-color);
-  background: linear-gradient(
-    180deg,
-    rgba(52, 152, 219, 0.04),
-    transparent 60%
-  );
+  text-align: left;
+}
+.post-hero,
+.post-content {
+  width: 100%;
+  box-sizing: border-box;
 }
 .post-hero h1 {
   font-size: 2rem;
@@ -327,6 +265,7 @@ article {
   height: 320px;
   object-fit: cover;
   display: block;
+  border-radius: 8px;
 }
 .excerpt {
   margin-top: 0.75rem;
@@ -339,9 +278,10 @@ article {
 }
 .post-footer {
   padding: 1.5rem;
-  border-top: 1px solid var(--border-color);
   text-align: center;
-  background: var(--background-color);
+}
+.post-footer a {
+  font-weight: 600;
 }
 
 /* Contact page shared styles */

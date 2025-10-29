@@ -46,3 +46,71 @@ const tags = article.tags ?? [];
         </footer>
     </article>
 </BaseLayout>
+
+<style>
+    .post-card {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+
+    .post-cover img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+    }
+
+    .post-hero {
+        margin-bottom: 2rem;
+    }
+
+    .meta {
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+        margin-bottom: 0.5rem;
+    }
+
+    .meta-sep {
+        margin: 0 0.5rem;
+    }
+
+    .excerpt {
+        font-style: italic;
+        margin-bottom: 1rem;
+    }
+
+    .tags {
+        margin-top: 0.5rem;
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+    }
+
+    .post-content {
+        line-height: 1.6;
+    }
+
+    .post-footer {
+        margin-top: 3rem;
+        font-size: 0.9rem;
+    }
+
+    .post-footer a {
+        text-decoration: none;
+        font-weight: 600;
+        color: var(--primary-color);
+    }
+
+    .post-footer a:hover {
+        text-decoration: underline;
+    }
+
+    .meta-author {
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+    }
+    .meta-date {
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+    }
+</style>
