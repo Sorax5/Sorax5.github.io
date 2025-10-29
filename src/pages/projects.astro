@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectList from '../components/project/ProjectList.astro';
 
 const pageTitle = 'Projets';
-const allProjects = Object.values(import.meta.glob('./projects/*.md', { eager: true }));
+const allProjects = Object.values(import.meta.glob('./projects/*.{md,mdx}', { eager: true }));
 ---
 
 <BaseLayout pageTitle={pageTitle}>

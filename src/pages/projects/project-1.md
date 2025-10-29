@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MarkdownProjectLayout.astro
 title: "Super Binette"
-pubDate: 2025-10-25
+pubDate: 2023-12-15
 description: "Projet Unity troisième année de BUT Informatique"
 contributors:
   ["Matteo Rauch", "Anthony Michaud", "Kevin Pradier", "Jeremie Larue"]

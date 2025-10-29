@@ -1,0 +1,68 @@
+---
+layout: ../../layouts/MarkdownProjectLayout.astro
+title: "Deathanimation Finale - Floumy Stoury"
+pubDate: 2025-10-29
+description: "Projet Unity Game jam Gamagora 2025"
+contributors:
+  [
+    "Matteo Rauch",
+    "Aymeric Moreau",
+    "Elyas Saïdoune",
+    "Houcine Hachemaoui",
+    "Lucas Spitz Drevet",
+    "Ugo Martignon",
+  ]
+image:
+  url: "https://raw.githubusercontent.com/Sorax5/DeadSkills/refs/heads/main/Assets/Sprites/im.png"
+  alt: "Logo du jeu Deathanimation Finale - Floumy Stoury"
+skills: ["csharp", "unity", "git", "aseprite"]
+links:
+  - label: "itch"
+    url: "https://ouki13.itch.io/deathtination-finale-a-floumbys-stourie"
+  - label: "github"
+    url: "https://github.com/Sorax5/DeadSkills"
+---
+
+### Thème de la Game Jam
+
+Le thème imposé était **« la mort »**.
+Nous avons choisi de l’interpréter de manière ludique et créative en faisant de la mort **un mécanisme de progression**, transformant chaque échec en opportunité d’apprentissage et d’évolution pour le joueur.
+
+---
+
+### Présentation du jeu
+
+**Floumy**, alias **Roger**, est un extraterrestre cartoon et artisan du BTP qui tente de s’échapper de son propre dessin animé.
+Pour y parvenir, il doit **descendre un immense bâtiment abandonné**, tout en débloquant de nouvelles compétences à l’aide d’un **arbre de talents**.
+
+Chaque compétence se déverrouille grâce à **une mort spécifique** : à chaque fois que le joueur meurt, il obtient un **point de mort**, lui permettant de progresser. Certaines morts sont rejouables, d’autres uniques, ce qui pousse à l’expérimentation et à la découverte.
+
+Le jeu mélange **plateforme**, **puzzle** et **skill**, en plaçant la **mort** au centre de la boucle de gameplay.
+
+---
+
+### Ma contribution au projet
+
+Durant la Game Jam, je me suis principalement chargé de la **programmation du gameplay** et des **systèmes techniques** :
+
+- **Déplacement du joueur** : mise en place d’une **machine à états** pour gérer les différents comportements (saut, déplacement, mort, etc.).
+- **Système de compétences** : conception de la **logique technique** de déblocage des skills (hors interface utilisateur).
+- **Environnement et effets visuels** :
+
+  - Systèmes de **détection de zones** et **effets visuels** (particules de véhicules, éclairs, etc.)
+  - Création d’un **système de circulation automobile** basé sur un **NavMesh Agent** suivant une **spline**, permettant de créer des routes modulables et un rendu réaliste du **drift lors des virages**.
+
+- **Animations** : contribution à l’intégration et la synchronisation des animations du personnage.
+- **Post-process et éclairage** : configuration des **effets de post-traitement** (hors shaders cartoon et outline) et du **paramétrage lumineux** global du jeu.
+
+<iframe
+  frameborder="0"
+  src="https://itch.io/embed/3997771"
+  width="552"
+  height="167"
+>
+  <a href="https://ouki13.itch.io/deathtination-finale-a-floumbys-stourie">
+    "Deathtination Finale" -a Floumby's Stourie by Ouki, SoraxDubbing, egoia,
+    Houcine_Hachemaoui, Lucas SPITZ DREVET
+  </a>
+</iframe>
