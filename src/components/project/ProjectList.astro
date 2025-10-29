@@ -2,12 +2,141 @@
 import ProjectItem from './ProjectItem.astro';
 
 const { allProjects } = Astro.props;
+
+const allSkills = (Array.from(
+    new Set(
+        allProjects.flatMap((p: any) => p.frontmatter?.skills ?? [])
+            .filter(Boolean)
+            .map((s: any) => String(s))
+    )
+) as string[]).sort((a, b) => a.localeCompare(b));
 ---
 
-<ul class="projects-grid">
-    {allProjects.map((p: any) => (
-        <ProjectItem {...p.frontmatter} url={p.url} />
-    ))}
+<div class="projects-filters">
+        <label>
+                <span class="sr-only">Rechercher</span>
+                <input id="project-search" type="search" placeholder="Rechercher par titre ou description…" />
+        </label>
+
+        <label>
+                <span class="sr-only">Filtrer par skill</span>
+                <select id="project-skill-filter">
+                        <option value="">Toutes les compétences</option>
+                        {allSkills.map((s) => (
+                            <option value={s}>{s}</option>
+                        ))}
+                </select>
+        </label>
+
+        <button id="project-clear-filters" type="button">Réinitialiser</button>
+</div>
+
+<ul class="projects-grid" id="projects-grid">
+        {allProjects.map((p: any) => (
+                <ProjectItem {...p.frontmatter} url={p.url} />
+        ))}
 </ul>
+
+<script type="module">
+    const search = document.getElementById('project-search');
+    const skillSelect = document.getElementById('project-skill-filter');
+    const clearBtn = document.getElementById('project-clear-filters');
+    const grid = document.getElementById('projects-grid');
+
+    function matchesFilter(li, query, skill) {
+        if (!li) return false;
+        const title = (li.dataset.title || '').toLowerCase();
+        const desc = (li.dataset.description || '').toLowerCase();
+        const tags = (li.dataset.tags || '').toLowerCase().split('|').filter(Boolean);
+        const skills = (li.dataset.skills || '').toLowerCase().split('|').filter(Boolean);
+
+        if (query) {
+            const q = query.toLowerCase();
+            if (!title.includes(q) && !desc.includes(q)) return false;
+        }
+
+        if (skill) {
+            if (!skills.includes(skill.toLowerCase())) return false;
+        }
+
+        return true;
+    }
+
+    function applyFilters() {
+        const q = search?.value || '';
+        const tag = tagSelect?.value || '';
+        const skill = skillSelect?.value || '';
+        const items = grid ? Array.from(grid.querySelectorAll('li.project-card')) : [];
+        items.forEach((li) => {
+            if (matchesFilter(li, q, tag, skill)) li.style.display = '';
+            else li.style.display = 'none';
+        });
+    }
+
+    if (search) search.addEventListener('input', applyFilters);
+    if (tagSelect) tagSelect.addEventListener('change', applyFilters);
+    if (skillSelect) skillSelect.addEventListener('change', applyFilters);
+    if (clearBtn) clearBtn.addEventListener('click', () => {
+        if (search) search.value = '';
+        if (tagSelect) tagSelect.value = '';
+        if (skillSelect) skillSelect.value = '';
+        applyFilters();
+    });
+</script>
+
+<style>
+    .projects-filters {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-bottom: 1.25rem;
+    }
+
+    .projects-filters label { display: block; }
+
+    #project-search {
+        padding: 0.5rem 0.75rem;
+        border-radius: 9999px;
+        border: 1px solid rgba(16,24,40,0.08);
+        background: var(--surface, #fff);
+        min-width: 260px;
+        box-shadow: 0 1px 2px rgba(16,24,40,0.02);
+    }
+
+    #project-skill-filter {
+        padding: 0.45rem 0.6rem;
+        border-radius: 8px;
+        border: 1px solid rgba(16,24,40,0.08);
+        background: var(--surface, #fff);
+    }
+
+    #project-clear-filters {
+        padding: 0.45rem 0.75rem;
+        border-radius: 8px;
+        border: none;
+        background: var(--primary-color);
+        color: white;
+        cursor: pointer;
+        box-shadow: 0 6px 18px rgba(37,99,235,0.12);
+    }
+
+    #project-clear-filters:hover { transform: translateY(-1px); }
+
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1rem;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    /* small responsive tweak */
+    @media (max-width: 640px) {
+        #project-search { min-width: 0; width: 100%; }
+        .projects-filters { gap: 0.5rem; }
+    }
+</style>
 
 

@@ -4,9 +4,12 @@ import { Project } from "../../models/Project";
 
 const raw = Astro.props as any;
 const project = new Project(raw);
+
+const tagStr = Array.isArray(raw.tags) ? raw.tags.join('|') : raw.tags ? String(raw.tags) : '';
+const skillsStr = Array.isArray(raw.skills) ? raw.skills.join('|') : raw.skills ? String(raw.skills) : '';
 ---
 
-<li class="project-card">
+<li class="project-card" data-tags={tagStr} data-skills={skillsStr} data-title={project.title} data-description={project.description ?? ''} data-pubdate={raw.pubDate ?? ''}>
     <a class="project-card__link" href={project.title ? raw.url ?? '#' : '#'}>
         {project.imageUrl ? (
             project.imageUrl.startsWith('/') ? (
@@ -25,6 +28,16 @@ const project = new Project(raw);
                     {project.skills.map((skill: string) => (
                         <img class="skill-icon" src={`/icons/${skill}.svg`} alt={skill} title={skill} width={20} height={20} />
                     ))}
+                </div>
+            ) : null}
+
+            {raw.tags && (Array.isArray(raw.tags) ? raw.tags.length > 0 : String(raw.tags).trim().length > 0) ? (
+                <div class="project-tags" aria-hidden="true">
+                    {Array.isArray(raw.tags) ? raw.tags.map((t: any) => (
+                        <span class="tag">{t}</span>
+                    )) : (
+                        <span class="tag">{String(raw.tags)}</span>
+                    )}
                 </div>
             ) : null}
         </div>
@@ -61,4 +74,15 @@ const project = new Project(raw);
     .project-skills { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
 
     .skill-icon { width: 20px; height: 20px; display: inline-block; }
+
+    .project-tags { margin-top: 0.5rem; display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .tag {
+        display: inline-block;
+        padding: 0.18rem 0.5rem;
+        border-radius: 999px;
+        background: rgba(16,24,40,0.04);
+        color: var(--text-secondary-color);
+        font-size: 0.8rem;
+        border: 1px solid rgba(16,24,40,0.04);
+    }
 </style>
