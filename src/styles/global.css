@@ -19,32 +19,12 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco,
-    "Roboto Mono", monospace;
-  font-variant-ligatures: contextual;
-  font-feature-settings: "calt" 1, "liga" 1;
-  margin: 0;
-  padding: 0;
-  background-color: var(--background-color);
-}
-
-main {
-  flex: 1 0 auto;
-}
-
 a {
   color: var(--primary-color);
   text-decoration: none;
 }
 a:hover {
   text-decoration: underline;
-}
-
-.site {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
 .name-gradient {

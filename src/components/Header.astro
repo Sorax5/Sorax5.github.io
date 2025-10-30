@@ -2,16 +2,14 @@
 import Image from 'astro/components/Image.astro';
 import Navigation from './Navigation.astro';
 ---
-<header class="debug-outline">
+<header>
     <div>
         <Image src="/pfp.png" alt="Logo" width="28" height="28" />
         <a href="/">
             Matteo Rauch
         </a>
     </div>
-    <nav>
-        <Navigation />
-    </nav>
+    <Navigation />
 </header>
 
 <style>
@@ -44,10 +42,5 @@ import Navigation from './Navigation.astro';
     header img:hover {
         transform: scale(1.1);
         transition: transform 0.2s ease;
-    }
-
-    nav {
-        display: flex;
-        gap: 1rem;
     }
 </style>

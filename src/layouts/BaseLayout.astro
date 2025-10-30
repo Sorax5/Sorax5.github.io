@@ -20,15 +20,29 @@ const { pageTitle = "Mon site Astro" } = Astro.props;
     <ClientRouter />
 </head>
 
-<body class="site">
-<Header />
-
-<main>
-    <article>
-        <slot />
-    </article>
-</main>
-
-<Footer />
+<body>
+    <Header />
+    <main>
+        <article>
+            <slot />
+        </article>
+    </main>
+    <Footer />
 </body>
 </html>
+
+<style>
+body {
+  font-family: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    "Roboto Mono", monospace;
+  font-variant-ligatures: contextual;
+  font-feature-settings: "calt" 1, "liga" 1;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color);
+}
+
+main {
+  width: calc(100% - 2rem);
+}
+</style>
