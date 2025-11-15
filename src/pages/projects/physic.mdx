@@ -1,0 +1,103 @@
+---
+layout: ../../layouts/MarkdownProjectLayout.astro
+title: "Sorax's Physic - Physical Engine"
+pubDate: 2024-11-22
+description: "Simulation physique Jbullet en java dans minecraft"
+contributors: ["Matteo Rauch"]
+image:
+  url: "https://raw.githubusercontent.com/Sorax5/SoraxPhysic/refs/heads/master/assets/logo_square_whitout_background.png"
+  alt: "Logo du projet Sorax's Physic"
+skills: ["java", "jbullet", "minecraft", "git", "paper", "gradle"]
+links:
+  - label: "modrinth"
+    url: "https://modrinth.com/plugin/soraxphysic"
+  - label: "github"
+    url: "https://github.com/Sorax5/SoraxPhysic"
+---
+
+## Mon expérience — Sorax's Physic
+
+J'ai créé `Sorax's Physic` pour explorer comment intégrer un vrai moteur physique dans un serveur Minecraft. Le but n'était pas seulement d'obtenir des effets visuels impressionnants, mais aussi de comprendre les contraintes techniques d'une simulation en temps réel sur un serveur multijoueur : performances, stabilité, synchronisation et ergonomie pour les administrateurs.
+
+Techniquement, j'ai choisi JBullet comme cœur de simulation pour sa légèreté et sa compatibilité Java. Le plugin s'exécute sur Paper/Spigot et s'appuie sur WorldEdit pour faciliter la sélection de zones à convertir en objets physiques.
+
+## Ce que j'ai appris
+
+- Exécution asynchrone en Java : concevoir une boucle de simulation qui tourne hors du thread principal du serveur tout en restant sûre pour l'API Bukkit/Paper.
+- Gestion de la stabilité et des performances : réglage du `timespan` et des `substeps` pour trouver un bon compromis entre précision et coût CPU.
+- Intégration d'une bibliothèque externe (JBullet) et adaptation des concepts physiques (masse, hitbox, contraintes) à l'univers Minecraft.
+- Commandes modernes avec `CommandAPI` pour proposer une UX claire aux administrateurs.
+- Interaction avec la communauté : retours d'utilisateurs, tests sur de petites communautés, corrections itératives.
+
+Ces apprentissages ont renforcé mes compétences en architecture backend temps réel et en développement de plugins Minecraft professionnels.
+
+## Showcase
+
+[![Showcase](https://img.youtube.com/vi/NDn6jCuOFAc/0.jpg)](https://www.youtube.com/watch?v=NDn6jCuOFAc&lc=UgxVySVQGbuG6Za8deV4AaABAg)
+
+[![Showcase](https://img.youtube.com/vi/c34Zz_ezCrM/0.jpg)](https://www.youtube.com/watch?v=c34Zz_ezCrM)
+
+Les vidéos montrent des exemples concrets : création de boîtes et sphères physiques, conversion de chunks entiers et réactions physiques en jeu.
+
+## Utilisation (résumé)
+
+Voici les commandes principales pour tester le plugin sur un serveur de développement :
+
+- Créer une boîte :
+
+```bash
+/physics create box <block> <mass> <xScale> <yScale> <zScale>
+```
+
+- Créer une sphère :
+
+```bash
+/physics create sphere <block> <mass> <radius>
+```
+
+- Geler / Effacer / Aide :
+
+```bash
+/physics freeze
+/physics clear
+/physics help
+```
+
+- Réglages de la simulation :
+
+```bash
+/physics timespan <timespan>
+/physics substeps <substeps>
+```
+
+- Conversion de zone (WorldEdit) :
+
+```bash
+/physics chunk <chunk>
+```
+
+## Pour les développeurs
+
+- Javadoc : https://sorax5.github.io/SoraxPhysic/javadoc/
+- Le dépôt utilise Gradle ; consultez les workflows GitHub Actions pour les builds et les artefacts.
+- WorldEdit est requis pour certaines fonctionnalités.
+
+## Téléchargement et installation
+
+Les builds de développement sont disponibles depuis les GitHub Actions du projet. Le plugin est aussi publié sur des plateformes comme Modrinth et CurseForge.
+
+Notes d'installation : installez `Paper` (ou Spigot compatible), placez le `.jar` dans `plugins/` et redémarrez le serveur. Pour utiliser la conversion de zones, installez `WorldEdit`.
+
+## Remarques finales
+
+Le projet est encore en développement et n'est pas optimisé pour des serveurs de production à forte charge. Si vous testez le plugin, signalez les problèmes via les issues GitHub — vos retours sont précieux.
+
+Si vous avez des questions ou souhaitez discuter d'améliorations, contactez-moi sur Discord : `soraxdubbing`.
+
+## Crédits et licence
+
+Inspiration : SethBling (chaîne YouTube).
+
+Licence : GPL-3.0 — voir le fichier `LICENSE` du dépôt.
+
+Merci aux testeurs et contributeurs pour leurs retours constructifs.

@@ -1,5 +1,6 @@
 ---
-import { Image } from "astro:assets";
+import fs from 'fs';
+import path from 'path';
 import BaseLayout from "./BaseLayout.astro";
 import { Project } from "../models/Project";
 
@@ -12,6 +13,20 @@ const coverAlt = project.imageAlt;
 const contributors = project.contributors;
 const skills = project.skills;
 const links = project.links;
+
+// Helper to resolve an icon path and fall back to the generic URL icon
+function iconFor(name: string | null | undefined) {
+    const fallback = '/icons/url.svg';
+    if (!name) return fallback;
+    const fileName = `${String(name).toLowerCase()}.svg`;
+    const fullPath = path.join(process.cwd(), 'public', 'icons', fileName);
+    try {
+        return fs.existsSync(fullPath) ? `/icons/${fileName}` : fallback;
+    } catch (e) {
+        return fallback;
+    }
+}
+
 ---
 
 
@@ -37,7 +52,7 @@ const links = project.links;
                     {
                             skills.map((skill: string | null | undefined) => {
                                 if (!skill) return null;
-                                const icon = `/icons/${String(skill).toLowerCase()}.svg`;
+                                const icon = iconFor(skill);
                                 return <img class="skill" src={icon} alt={skill} width="24" height="24" />;
                             })
                         }
@@ -50,8 +65,9 @@ const links = project.links;
                     {
                         links.map((link: { url?: string | URL | null | undefined; label?: string | null | undefined }) => {
                             const label = String(link.label ?? 'lien');
+                            const icon = iconFor(label);
                             return <div class="link">
-                                <Image src={`/icons/${label.toLowerCase()}.svg`} inferSize={true} alt={label} width={24} height={24} title={label} />
+                                <img src={icon} alt={label} width={24} height={24} title={label} />
                                 <a href={link.url} target="_blank" rel="noopener noreferrer">{link.url}</a>
                             </div>;
                         })

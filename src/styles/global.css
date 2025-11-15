@@ -85,6 +85,14 @@ a:hover {
   -webkit-mask-image: url("/icons/aseprite.svg");
   mask-image: url("/icons/aseprite.svg");
 }
+.icon-gradient.icon-url {
+  -webkit-mask-image: url("/icons/url.svg");
+  mask-image: url("/icons/url.svg");
+}
+.icon-gradient.icon-modrinth {
+  -webkit-mask-image: url("/icons/modrinth.svg");
+  mask-image: url("/icons/modrinth.svg");
+}
 
 .icon-link {
   display: inline-flex;
