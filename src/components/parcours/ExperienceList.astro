@@ -1,0 +1,41 @@
+---
+import ExperienceItem from './ExperienceItem.astro';
+import ExperienceTimeline from './ExperienceTimeline.astro';
+
+const { allExperiences } = Astro.props;
+
+// Group by category
+const groups = allExperiences.reduce((acc: Record<string, any[]>, it: any) => {
+  const cat = (it.frontmatter?.category ?? 'Autre') as string;
+  if (!acc[cat]) acc[cat] = [];
+  acc[cat].push(it);
+  return acc;
+}, {} as Record<string, any[]>);
+
+const sortedCategories = Object.keys(groups).sort((a, b) => a.localeCompare(b));
+---
+
+{sortedCategories.map((cat) => (
+  <section class="exp-group">
+    <h2>{cat}</h2>
+    {cat.toLowerCase() === 'formation' ? (
+      <ExperienceTimeline items={groups[cat]} />
+    ) : (
+      <ul class="exp-list">
+        {groups[cat].sort((a: any, b: any) => {
+          const da = new Date(a.frontmatter?.pubDate ?? a.frontmatter?.startDate ?? 0).getTime();
+          const db = new Date(b.frontmatter?.pubDate ?? b.frontmatter?.startDate ?? 0).getTime();
+          return db - da;
+        }).map((e: any) => (
+          <ExperienceItem {...e.frontmatter} url={e.url} />
+        ))}
+      </ul>
+    )}
+  </section>
+))}
+
+<style>
+  .exp-group + .exp-group { margin-top: 1.25rem; }
+  .exp-list { padding: 0; margin: 0; list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  h2 { margin: 0 0 0.5rem 0; font-size: 1.15rem; }
+</style>

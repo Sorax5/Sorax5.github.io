@@ -1,0 +1,47 @@
+---
+import Image from 'astro/components/Image.astro';
+import { Experience } from '../../models/Experience';
+
+const raw = Astro.props as any;
+const exp = new Experience(raw);
+
+const skillsStr = Array.isArray(raw.skills) ? raw.skills.join('|') : raw.skills ? String(raw.skills) : '';
+---
+
+<li class="experience-card" data-category={exp.category} data-skills={skillsStr}>
+  <article class="exp-inner">
+    <header>
+      <h3>{exp.title}</h3>
+      <div class="meta">{exp.institution ? <span class="institution">{exp.institution}</span> : null} {exp.formattedDate ? <span class="date"> — {exp.formattedDate}</span> : null}</div>
+    </header>
+
+    {exp.imageUrl ? (
+      exp.imageUrl.startsWith('/') ? (
+        <img class="exp-cover" src={exp.imageUrl} alt={exp.imageAlt} />
+      ) : (
+        <Image class="exp-cover" src={exp.imageUrl} alt={exp.imageAlt} inferSize={true} />
+      )
+    ) : null}
+
+    {exp.description ? <p class="exp-desc">{exp.description}</p> : null}
+
+    {exp.skills.length ? (
+      <div class="exp-skills" aria-hidden="true">
+        {exp.skills.map((s: string) => (
+          <span class="skill">{s}</span>
+        ))}
+      </div>
+    ) : null}
+  </article>
+</li>
+
+<style>
+  .experience-card { list-style: none; margin: 0 0 1rem 0; }
+  .exp-inner { background: white; border-radius: 8px; padding: 0.75rem; box-shadow: 0 4px 12px rgba(16,24,40,0.04); display: flex; gap: 0.75rem; align-items: flex-start; }
+  .exp-cover { width: 96px; height: 96px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
+  h3 { margin: 0 0 0.25rem 0; font-size: 1.05rem; }
+  .meta { color: var(--text-secondary-color); font-size: 0.9rem; margin-bottom: 0.6rem; }
+  .exp-desc { margin: 0 0 0.5rem 0; color: var(--text-color); }
+  .exp-skills { margin-left: auto; display: flex; gap: 0.4rem; flex-wrap: wrap; align-items: center; }
+  .skill { background: rgba(16,24,40,0.04); padding: 0.18rem 0.4rem; border-radius: 999px; font-size: 0.8rem; color: var(--text-secondary-color); }
+</style>

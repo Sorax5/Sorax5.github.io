@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ExperienceList from '../components/parcours/ExperienceList.astro';
+
+const pageTitle = 'Parcours';
+const allExperiences = Object.values(import.meta.glob('./parcours/*.{md,mdx}', { eager: true }))
+  .sort((a: any, b: any) => {
+    const dateA = new Date(a.frontmatter?.pubDate ?? a.frontmatter?.startDate ?? 0).getTime();
+    const dateB = new Date(b.frontmatter?.pubDate ?? b.frontmatter?.startDate ?? 0).getTime();
+    return dateB - dateA;
+  });
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <section class="page-section">
+    <h1>Parcours</h1>
+    <p>Sur cette page je présente mon parcours : mes stages, mes formations et autres expériences.</p>
+    <ExperienceList allExperiences={allExperiences} />
+  </section>
+</BaseLayout>

@@ -1,0 +1,49 @@
+---
+import { Experience } from '../../models/Experience';
+
+const { items } = Astro.props; // items: array of { frontmatter, url }
+
+// normalize and sort by startDate desc
+const normalized = (items || []).map((it: any) => ({ ...it.frontmatter, url: it.url })).sort((a: any, b: any) => {
+  const da = new Date(a.startDate ?? a.pubDate ?? 0).getTime();
+  const db = new Date(b.startDate ?? b.pubDate ?? 0).getTime();
+  return db - da;
+});
+---
+
+<div class="timeline" role="list">
+  {normalized.map((f: any, i: number) => {
+    const exp = new Experience(f);
+    return (
+      <article class="timeline-item" role="listitem">
+        <div class="marker" aria-hidden="true"></div>
+        <div class="content">
+          <header>
+            <h3>{exp.title}</h3>
+            <div class="meta">{exp.institution ? <span class="institution">{exp.institution}</span> : null}<span class="date">{exp.formattedDate}</span></div>
+          </header>
+          {exp.description ? <p class="desc">{exp.description}</p> : null}
+          {exp.skills.length ? (
+            <div class="skills">{exp.skills.map((s: string) => <span class="skill">{s}</span>)}</div>
+          ) : null}
+        </div>
+      </article>
+    );
+  })}
+</div>
+
+<style>
+  .timeline { position: relative; padding-left: 2.2rem; border-left: 2px solid rgba(16,24,40,0.06); }
+  .timeline-item { position: relative; margin: 0 0 1.25rem 0; display: flex; }
+  .timeline-item .marker { position: absolute; left: -1.2rem; top: 0.4rem; width: 14px; height: 14px; background: var(--primary-color); border-radius: 50%; box-shadow: 0 0 0 4px rgba(37,99,235,0.08); }
+  .timeline-item .content { background: white; padding: 0.65rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(16,24,40,0.04); width: 100%; }
+  .timeline-item h3 { margin: 0 0 0.25rem 0; font-size: 1.05rem; }
+  .timeline-item .meta { color: var(--text-secondary-color); font-size: 0.9rem; margin-bottom: 0.5rem; }
+  .timeline-item .desc { margin: 0 0 0.5rem 0; }
+  .skill { display: inline-block; background: rgba(16,24,40,0.04); padding: 0.18rem 0.4rem; border-radius: 999px; font-size: 0.8rem; color: var(--text-secondary-color); margin-right: 0.35rem; }
+
+  @media (max-width: 640px) {
+    .timeline { padding-left: 1.2rem; }
+    .timeline-item .marker { left: -0.9rem; }
+  }
+</style>
