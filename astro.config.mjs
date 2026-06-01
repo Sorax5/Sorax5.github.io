@@ -6,7 +6,7 @@ import mdx from "@astrojs/mdx";
 // https://astro.build/config
 export default defineConfig({
   image: {
-    domains: ['raw.githubusercontent.com', 'img.itch.zone'],
+    domains: ['raw.githubusercontent.com', 'img.itch.zone','i.imgur.com'],
   },
   integrations: [mdx()],
 });
