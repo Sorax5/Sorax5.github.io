@@ -36,15 +36,15 @@ L'une des premières et meilleures sources que j'ai trouvées est cette vidéo d
 
 Après avoir compris le concept, j'ai commencé à explorer Unreal Engine 5 et son plugin de Virtual Production. L'une de mes premières expériences a été d'intégrer une vidéo fond vert dans UE5, afin de comprendre son fonctionnement et la manière de l'exploiter dans le moteur.
 
-<iframe
+<video
   width="560"
   height="315"
-  src="projects/ggwp/first.mp4"
-  title="YouTube video player"
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  allowfullscreen
-></iframe>
+  controls
+  autoplay={false}
+>
+  <source src={`${import.meta.env.BASE_URL}projects/ggwp/first.mp4`} type="video/mp4" />
+  Votre navigateur ne supporte pas la lecture vidéo.
+</video>
 
 Le plugin repose sur l'intégration de médias via le **Media Framework** d'Unreal Engine, qui permet de lire des vidéos et de les utiliser comme textures dans le moteur. Côté technique, il fonctionne grâce à ce qu'il appelle des **Compositing Layers**, permettant de superposer des éléments virtuels et réels en temps réel.
 
