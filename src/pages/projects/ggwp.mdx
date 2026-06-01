@@ -1,0 +1,128 @@
+---
+layout: ../../layouts/MarkdownProjectLayout.astro
+title: "GGWP - Virtual Production Unreal Engine 5"
+pubDate: 2026-04-25
+description: "Création d'une scène de Virtual Production avec Unreal Engine 5, pour une émission étudiante nommée GGWP."
+contributors: ["Matteo Rauch"]
+image:
+  url: "/projects/ggwp.png"
+  alt: "^Scène de Virtual Production réalisée avec Unreal Engine 5 pour l'émission GGWP^"
+skills: ["UE5", "virtual production", "git", "blender"]
+links:
+  - label: "twitch"
+    url: "https://www.twitch.tv/formations_gamagora"
+---
+
+Dans le cadre de ma formation à Gamagora, j'ai eu l'opportunité de travailler sur un projet de **Virtual Production** utilisant **Unreal Engine 5**. Ce projet visait à créer une scène immersive pour une émission étudiante intitulée **GGWP**, diffusée sur Twitch. Cette émission couvre divers sujets liés aux jeux vidéo, à la technologie et à la culture geek, et est entièrement à l'initiative des étudiants de Gamagora.
+
+### Objectifs du projet
+
+L'objectif principal était de concevoir et de réaliser une scène virtuelle servant de décor pour l'émission GGWP. Celle-ci devait être à la fois visuellement attrayante et techniquement fonctionnelle, en intégrant des éléments de **modélisation 3D**, d'**éclairage dynamique** et d'**effets visuels avancés**.
+
+La première étape a été de comprendre le fonctionnement de la production virtuelle et de se familiariser avec les outils et techniques spécifiques à Unreal Engine 5. En faisant mes recherches, j'ai non seulement découvert le concept et l'intégration entre réel et virtuel, mais j'ai également réalisé qu'Unreal Engine avait récemment créé un nouveau plugin de Virtual Production. De ce fait, la plupart des ressources disponibles portaient encore sur l'ancienne version du plugin, rendant une grande partie des informations inexactes.
+
+L'une des premières et meilleures sources que j'ai trouvées est cette vidéo de Phillip Moss, qui explique très clairement le fonctionnement de la production virtuelle.
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/DQT0Qy856mA?si=0J4m2vApqagf8kYv"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen
+></iframe>
+
+Après avoir compris le concept, j'ai commencé à explorer Unreal Engine 5 et son plugin de Virtual Production. L'une de mes premières expériences a été d'intégrer une vidéo fond vert dans UE5, afin de comprendre son fonctionnement et la manière de l'exploiter dans le moteur.
+
+<iframe
+  width="560"
+  height="315"
+  src="projects/ggwp/first.mp4"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+></iframe>
+
+Le plugin repose sur l'intégration de médias via le **Media Framework** d'Unreal Engine, qui permet de lire des vidéos et de les utiliser comme textures dans le moteur. Côté technique, il fonctionne grâce à ce qu'il appelle des **Compositing Layers**, permettant de superposer des éléments virtuels et réels en temps réel.
+
+Concrètement, chaque caméra physique est reliée à une caméra virtuelle dans UE5. Chaque caméra virtuelle possède son propre **Compositing Layer** qui gère la superposition des éléments réels et virtuels en projetant l'image de la caméra physique sur un mesh placé dans la scène virtuelle.
+
+<img
+  src="/projects/ggwp/plate.png"
+  alt="exemple de plate utilisé dans la virtual production"
+/>
+
+C'est la série de vidéos de **Dean Yurke** qui m'a été la plus utile tout au long de ce projet. Sortie au même moment où j'effectuais mes recherches, elle explique très bien les bases de la Virtual Production avec Unreal Engine 5 et m'a permis de comprendre comment configurer une scène de A à Z. Je vous invite vivement à la consulter si vous souhaitez vous lancer dans la production virtuelle.
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/6he5ag3nLjs?si=YnhBHUYmq3WbI0J9"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen
+></iframe>
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/VbLziZfiyD8?si=SZjO1WCWHSBQVaYr"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen
+></iframe>
+
+L'une des autres difficultés rencontrées a été d'envoyer le flux vidéo rendu par Unreal Engine vers **OBS Studio**, le logiciel de streaming utilisé pour diffuser l'émission sur Twitch. Après de nombreuses recherches, j'ai trouvé différentes solutions, payantes ou gratuites, mais souvent uniquement compatibles avec l'ancienne version du plugin.
+
+C'est finalement la technologie **NDI (Network Device Interface)** qui a résolu le problème. Elle permet de transmettre des flux vidéo en temps réel sur un réseau local, et Unreal Engine 5 dispose d'un plugin NDI officiel permettant d'envoyer le rendu de la scène directement vers OBS Studio. Cela a grandement simplifié le processus de diffusion en garantissant une bonne qualité vidéo, et surtout en permettant de faire transiter le flux entre deux ordinateurs via un câble Ethernet, réduisant ainsi la charge de la machine chargée du rendu.
+
+### Améliorations au fil des émissions
+
+Après plusieurs diffusions réussies, j'ai pu affiner la technique. J'ai notamment cessé d'utiliser le keyer intégré d'Unreal, qui présentait trop de problèmes et reste un outil encore trop immature. J'ai préféré effectuer le keying directement depuis OBS en récupérant les sources, puis émettre une source NDI par caméra vers Unreal.
+
+L'autre modification notable a été d'abandonner la commutation du rendu et de la caméra dans le compositing, au profit d'une texture virtuelle sur laquelle la caméra active dessine en continu. Cette approche est plus coûteuse en ressources, mais offre davantage de souplesse dans les paramétrages.
+
+### Bilan
+
+Ce projet a représenté pour moi un véritable défi, et j'y ai beaucoup appris sur le système de production virtuelle. Cela dit, sans budget conséquent ni studio bien équipé, un environnement rendu en temps réel n'est pas forcément la solution la plus efficace. La quantité de configuration nécessaire est considérable pour finalement obtenir un résultat proche d'un rendu statique. Si je devais recommencer, j'opterais probablement pour un rendu classique via Unreal, voire je testerais un rendu directement depuis Blender.
+
+### Les émissions en replay
+
+Vous pouvez retrouver les VODs des émissions GGWP diffusées durant ce projet directement ici.
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/2aajiqFeruc"
+  title="GGWP émission 1"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen
+></iframe>
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/CKGzEyjgNsA"
+  title="GGWP émission 2"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen
+></iframe>
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/zEqOiczKe7U"
+  title="GGWP émission 3"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen
+></iframe>
